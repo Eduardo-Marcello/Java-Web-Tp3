@@ -9,6 +9,11 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="<c:url value='recursos/style.css'/>" rel="stylesheet" />
+<script>
+function validar(){
+	
+}
+</script>
 </head>
 <body>
 	<div class="jumbotron text-center">
@@ -18,20 +23,19 @@
 	<div class="wrapper fadeInDown">
 		<div id="formContent">
 
-			<form action="/login" method="post">
+			<form action="/validacao" method="post">
 				<div class="form-group">
 					<label>Login:</label> <input type="text" class="form-control"
-						name="login">
+						name="email" id="email" required="">
 				</div>
 
 				<div class="form-group">
 					<label>Senha:</label> <input type="password" class="form-control"
-						name="senha">
+						name="password" id="password" required="">
 				</div>
 
 				<div class="form-group">
-					<input type="submit" id="submit" class="btn-primary"
-						value="Login">
+					<input type="submit" id="submit" class="btn-primary" value="Login">
 				</div>
 			</form>
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.edu.infnet.Tp3DR3.model.negocio.Login;
 import br.edu.infnet.Tp3DR3.model.negocio.Usuario;
 import br.edu.infnet.Tp3DR3.service.UsuarioService;
 
@@ -37,10 +38,33 @@ public class AppController {
     }
     
     @RequestMapping(value = "/login")
-    public String login(){
+    public String login(Model model){
+    	Login login = new Login();
+    	 model.addAttribute("login", login);
     	return "login";
     }
     
+    @RequestMapping(value = "/validacao")
+    public String validacao(Model model, Login login)throws SQLException {
+    	usuarioService.salvarLogin(login);
+    	return "redirect:/valida";
+    }
+    
+    @RequestMapping(value = "/valida")
+    public String valida(Model model) {
+    	String msg;
+    	if(usuarioService.acharCadastro()==true) {
+    		if(usuarioService.comparaSenha()==true) {
+    			msg = "Você está autenticado no sistema!";
+    		} else {
+    			msg = "Dados incorretos!";
+    		}
+    	} else {
+    		msg = "Não existe cadastro com esse email";
+    	}
+    	model.addAttribute("msg", msg);
+        return "valida";
+    }
 
     
 }
