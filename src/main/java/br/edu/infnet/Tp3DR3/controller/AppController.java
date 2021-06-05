@@ -54,14 +54,11 @@ public class AppController {
     public String valida(Model model) {
     	String msg;
     	if(usuarioService.acharCadastro()==true) {
-    		if(usuarioService.comparaSenha()==true) {
     			msg = "Você está autenticado no sistema!";
     		} else {
-    			msg = "Dados incorretos!";
+    			msg = "Dados incorretos ou inexistentes!";
     		}
-    	} else {
-    		msg = "Não existe cadastro com esse email";
-    	}
+
     	model.addAttribute("msg", msg);
         return "valida";
     }

@@ -48,21 +48,23 @@ public class UsuarioService {
 
 		for(Usuario us: usuarios) {
 			if(login.getEmail().equalsIgnoreCase(us.getEmail())) {
-				return true;
+				if(login.getPassword().equalsIgnoreCase(us.getPassword())) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	public boolean comparaSenha() {
-		usuarios = (List<Usuario>) usuarioRepository.findAll();
-		
-		for(Usuario us: usuarios) {
-			if(login.getPassword().equalsIgnoreCase(us.getPassword())) {
-				return true;
-			}
-		}
-		return false;
-	}
+	// Outro estilo para à autenticação
+	
+//	for(Usuario us: usuarios) {
+//		if((login.getEmail().equalsIgnoreCase(us.getEmail())) && (login.getPassword().equalsIgnoreCase(us.getPassword()))) {
+//				return true;
+//			}
+//		}
+//
+//	return false;
+//}
 	
 }
